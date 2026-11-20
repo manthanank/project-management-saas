@@ -17,3 +17,4 @@ A Linear/Jira-inspired enterprise agile workflow and project orchestration SaaS 
 - Sprint: id, name, goal, startDate, endDate, status, projectId, issues.
 - Issue: id, identifier (e.g. ENG-142), title, description, status, priority, points, assigneeId, projectId, sprintId.
 - User: id, name, email, avatar, role, workspaceId.
+

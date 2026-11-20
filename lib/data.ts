@@ -248,3 +248,4 @@ export const ISSUE_DISTRIBUTION = [
   { name: "DevOps & Inf", value: 20, fill: "#10b981" },
   { name: "Tech Debt", value: 15, fill: "#f59e0b" },
 ];
+

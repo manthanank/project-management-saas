@@ -10,3 +10,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: "https://project-management-saas-delta.vercel.app/sitemap.xml",
   };
 }
+

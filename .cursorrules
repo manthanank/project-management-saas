@@ -6,3 +6,4 @@
 - Real-time Multi-tenant Kanban and Sprint Burndown calculations with interactive velocity estimators.
 - Responsive UX across mobile, tablet, and desktop viewports.
 - Web Analytics integrated via @vercel/analytics and @vercel/speed-insights.
+

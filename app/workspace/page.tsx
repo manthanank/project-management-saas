@@ -24,13 +24,34 @@ export default function WorkspacePage() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   React.useEffect(() => {
-    try {
-      const stored = localStorage.getItem("pulse_issues");
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) setIssues(parsed);
-      }
-    } catch (e) {}
+    fetch("/api/tasks")
+      .then((res) => res.json())
+      .then((data) => {
+        try {
+          const stored = localStorage.getItem("pulse_issues");
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              setIssues(parsed);
+              return;
+            }
+          }
+          if (data.issues && Array.isArray(data.issues)) {
+            setIssues(data.issues);
+          }
+        } catch (e) {
+          if (data.issues) setIssues(data.issues);
+        }
+      })
+      .catch(() => {
+        try {
+          const stored = localStorage.getItem("pulse_issues");
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length > 0) setIssues(parsed);
+          }
+        } catch (e) {}
+      });
   }, []);
 
   const saveIssues = (updated: Issue[]) => {

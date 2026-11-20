@@ -1,0 +1,8 @@
+# Project Management SaaS Architecture & Cursor Rules
+
+## Stack & Principles
+- Next.js 15 App Router, TypeScript (Strict Mode), Tailwind CSS, Lucide Icons, Framer Motion, Recharts.
+- PostgreSQL Prisma ORM relational modeling for Workspaces, Projects, Sprints, Issues, Users, and ActivityLogs.
+- Real-time Multi-tenant Kanban and Sprint Burndown calculations with interactive velocity estimators.
+- Responsive UX across mobile, tablet, and desktop viewports.
+- Web Analytics integrated via @vercel/analytics and @vercel/speed-insights.

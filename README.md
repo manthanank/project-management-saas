@@ -43,3 +43,4 @@ Pulse.pm is a high-velocity project management platform built with Next.js 15, T
    ```
 
 4. Open [http://localhost:3000](http://localhost:3000).
+

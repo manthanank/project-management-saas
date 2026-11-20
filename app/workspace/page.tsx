@@ -23,6 +23,23 @@ export default function WorkspacePage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
+  React.useEffect(() => {
+    try {
+      const stored = localStorage.getItem("pulse_issues");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) setIssues(parsed);
+      }
+    } catch (e) {}
+  }, []);
+
+  const saveIssues = (updated: Issue[]) => {
+    setIssues(updated);
+    try {
+      localStorage.setItem("pulse_issues", JSON.stringify(updated));
+    } catch (e) {}
+  };
+
   // New Issue Form State
   const [newTitle, setNewTitle] = useState("");
   const [newDesc, setNewDesc] = useState("");
@@ -52,9 +69,8 @@ export default function WorkspacePage() {
   });
 
   const handleMoveStatus = (issueId: string, nextStatus: Issue["status"]) => {
-    setIssues((prev) =>
-      prev.map((iss) => (iss.id === issueId ? { ...iss, status: nextStatus } : iss))
-    );
+    const updatedIssues = issues.map((iss) => (iss.id === issueId ? { ...iss, status: nextStatus } : iss));
+    saveIssues(updatedIssues);
     const updated = issues.find((i) => i.id === issueId);
     setToastMessage(`Moved ${updated?.key} to ${nextStatus.replace("_", " ")}`);
     setTimeout(() => setToastMessage(null), 2500);
@@ -78,7 +94,7 @@ export default function WorkspacePage() {
       createdAt: "Just now",
     };
 
-    setIssues([created, ...issues]);
+    saveIssues([created, ...issues]);
     setShowCreateModal(false);
     setNewTitle("");
     setNewDesc("");

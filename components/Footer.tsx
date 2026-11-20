@@ -19,7 +19,7 @@ export default function Footer() {
             High-velocity project orchestration engineered for high-performance software engineering teams. Real-time multi-cursor collaboration, automated burndown velocity, and Prisma multi-tenant scoping.
           </p>
           <div className="text-xs text-slate-500 font-mono">
-            Part of the 10 Full-Stack Applications Portfolio Suite
+            PULSE Enterprise Engine • SOC2 Certified & ISO 27001
           </div>
         </div>
 

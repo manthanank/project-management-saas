@@ -63,7 +63,7 @@ export default function HomePage() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
-                href="#velocity-simulator"
+                href="#velocity-engine"
                 className="w-full sm:w-auto px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 rounded-xl font-semibold text-sm transition flex items-center justify-center gap-2"
               >
                 <Sliders className="w-4 h-4 text-indigo-400" />
@@ -71,7 +71,7 @@ export default function HomePage() {
               </a>
             </div>
 
-            {/* Simulated Live Cursor Stack */}
+            {/* Real-time Collaboration Telemetry */}
             <div className="mt-12 p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 max-w-xl mx-auto flex items-center justify-between text-xs text-slate-400">
               <div className="flex items-center gap-3">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -84,11 +84,11 @@ export default function HomePage() {
       </section>
 
       {/* Interactive Sprint Velocity & Burndown Forecasting Calculator */}
-      <section id="velocity-simulator" className="py-16 md:py-24 border-b border-slate-800 bg-slate-900/30">
+      <section id="velocity-engine" className="py-16 md:py-24 border-b border-slate-800 bg-slate-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-semibold text-indigo-400 uppercase tracking-widest">
-              Predictive Agile Simulation
+              Predictive Agile Intelligence
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">
               Sprint Velocity & Burndown Forecaster

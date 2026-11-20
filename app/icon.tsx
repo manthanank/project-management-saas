@@ -25,7 +25,7 @@ export default function Icon() {
           boxShadow: "0 2px 8px rgba(99, 102, 241, 0.4)",
         }}
       >
-        ⚡
+        PM
       </div>
     ),
     {

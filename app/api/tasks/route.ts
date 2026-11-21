@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Issue, INITIAL_ISSUES, USERS } from "@/lib/data";
+import { prisma, isDatabaseConfigured } from "@/lib/prisma";
 
 let serverIssues: Issue[] = [...INITIAL_ISSUES];
 
@@ -8,7 +9,40 @@ export async function GET(request: Request) {
   const status = searchParams.get("status");
   const query = searchParams.get("q")?.toLowerCase();
 
-  let filtered = [...serverIssues];
+  let issues = [...serverIssues];
+
+  if (isDatabaseConfigured()) {
+    try {
+      const dbIssues = await prisma.issue.findMany({
+        include: { assignee: true, project: true },
+        orderBy: { createdAt: "desc" },
+      });
+      if (dbIssues && dbIssues.length > 0) {
+        issues = dbIssues.map((i) => ({
+          id: i.id,
+          key: i.identifier,
+          title: i.title,
+          description: i.description || "",
+          status: i.status as any,
+          priority: i.priority as any,
+          points: i.points,
+          assignee: {
+            id: i.assignee ? i.assignee.id : "u-1",
+            name: i.assignee ? i.assignee.name : "Alex Rivera",
+            role: i.assignee ? i.assignee.role : "Lead Engineer",
+            avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&q=80",
+            initials: "AR",
+          },
+          labels: ["Engineering", "Sprint"],
+          createdAt: i.createdAt.toISOString().split("T")[0],
+        }));
+      }
+    } catch (e) {
+      console.warn("[Tasks API] Database query error, using in-memory:", (e as Error).message);
+    }
+  }
+
+  let filtered = [...issues];
 
   if (status && status !== "ALL") {
     filtered = filtered.filter((i) => i.status === status);
